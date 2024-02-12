@@ -1,0 +1,95 @@
+from tkinter import *
+from tkinter import ttk
+
+window = Tk()
+window.geometry('400x400')
+window.title('Calculator')
+
+frame_display = ttk.Frame(window)
+frame_display.grid(row=0)
+
+frame = ttk.Frame(window)
+frame.grid(row=1)
+
+
+
+display_number_value = StringVar(window)
+
+display = Entry(frame_display,font=("arial",16,"bold"),text=display_number_value,justify='right')
+display.grid(sticky=NSEW)
+
+
+
+
+def number_to_display(number):
+    tmp = display_number_value.get()
+    display_number = str(tmp + number)
+    display_number_value.set(display_number)
+   
+def reset_display():
+    display_number_value.set("")
+  
+
+# Button widgets
+
+button_clear = ttk.Button(frame,text="Clear",command=reset_display)
+button_clear.grid(row=0,column=0)
+
+button_MEM1 = ttk.Button(frame,text="MEM1")
+button_MEM1.grid(row=0,column=1)
+
+button_MEM2 = ttk.Button(frame,text="MEM2")
+button_MEM2.grid(row=0,column=2)
+
+button_divide = ttk.Button(frame,text="/")
+button_divide.grid(row=0,column=3)
+
+
+button_7 = ttk.Button(frame,text="7",command=lambda: number_to_display('7'))
+button_7.grid(row=1,column=0)
+
+button_8 = ttk.Button(frame,text="8",command=lambda: number_to_display('8'))
+button_8.grid(row=1,column=1)
+
+button_9 = ttk.Button(frame,text="9",command=lambda: number_to_display('9'))
+button_9.grid(row=1,column=2)
+
+button_multiply = ttk.Button(frame,text="*")
+button_multiply.grid(row=1,column=3)
+
+
+button_4 = ttk.Button(frame,text="4",command=lambda: number_to_display('4'))
+button_4.grid(row=2,column=0)
+
+button_5 = ttk.Button(frame,text="5",command=lambda: number_to_display('5'))
+button_5.grid(row=2,column=1)
+
+button_6 = ttk.Button(frame,text="6",command=lambda: number_to_display('6'))
+button_6.grid(row=2,column=2)
+
+button_substract = ttk.Button(frame,text="-")
+button_substract.grid(row=2,column=3)
+
+
+button_1 = ttk.Button(frame,text="1",command=lambda: number_to_display('1'))
+button_1.grid(row=3,column=0)
+
+button_2 = ttk.Button(frame,text="2",command=lambda: number_to_display('2'))
+button_2.grid(row=3,column=1)
+
+button_3 = ttk.Button(frame,text="3",command=lambda: number_to_display('3'))
+button_3.grid(row=3,column=2)
+
+button_add = ttk.Button(frame,text="+")
+button_add.grid(row=3,column=3)
+
+
+button_0 = ttk.Button(frame,text="0",command=lambda: number_to_display('0'))
+button_0.grid(row=4,column=0,columnspan=2)
+
+button_komma = ttk.Button(frame,text=".")
+button_komma.grid(row=4,column=2)
+
+window.mainloop()
+
+
