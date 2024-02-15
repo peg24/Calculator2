@@ -2,22 +2,23 @@ from ctypes.wintypes import DOUBLE
 from tkinter import *
 from tkinter import ttk
 from tokenize import Double
+from turtle import window_height
 
 window = Tk()
-window.geometry('400x400')
+#window.geometry('400x250')
 window.title('Calculator')
 
 frame_display = ttk.Frame(window)
 frame_display.grid(row=0)
 
-frame = ttk.Frame(window)
+frame = ttk.Frame(window,height=5)
 frame.grid(row=1)
 
 #Variable to show numbers on display
 display_number_value = StringVar(window)
 
 #Display
-display = Entry(frame_display,font=("arial",16,"bold"),text=display_number_value,justify='right')
+display = Entry(frame_display,font=("arial",16,"bold"),text=display_number_value,justify='right',background="orange")
 display.grid(sticky=NSEW)
 
 #Skow numbers on display
@@ -94,13 +95,13 @@ button_add = ttk.Button(frame,text="+",command=lambda: number_to_display('+'))
 button_add.grid(row=3,column=3)
 
 button_0 = ttk.Button(frame,text="0",command=lambda: number_to_display('0'))
-button_0.grid(row=4,column=0)
+button_0.grid(row=4,column=0,columnspan=2)
 
 button_komma = ttk.Button(frame,text=".",command=lambda: number_to_display('.'))
-button_komma.grid(row=4,column=1)
+button_komma.grid(row=4,column=2)
 
 button_equal = ttk.Button(frame,text="=",command=equal)
-button_equal.grid(row=4,column=2)
+button_equal.grid(row=4,column=3)
 
 window.mainloop()
 
