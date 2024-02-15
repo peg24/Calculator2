@@ -13,18 +13,12 @@ frame_display.grid(row=0)
 frame = ttk.Frame(window)
 frame.grid(row=1)
 
-
 #Variable to show numbers on display
 display_number_value = StringVar(window)
-
-#Variable to store value
-calculation_number = StringVar(window,value="0")
-
 
 #Display
 display = Entry(frame_display,font=("arial",16,"bold"),text=display_number_value,justify='right')
 display.grid(sticky=NSEW)
-
 
 #Skow numbers on display
 def number_to_display(number):
@@ -41,50 +35,13 @@ def remove_last_character():
     old = display_number_value.get()
     new = old[: -1]
     display_number_value.set(new)
-  
-def add():
-    tmp_1 = display_number_value.get()
-    tmp_2 = ("+" + calculation_number.get())
-    tmp_3 = eval(tmp_1 + tmp_2)
-#    print(tmp_3)
-    calculation_number.set(tmp_3)
-    print(calculation_number.get())
-    #print(new_number)
-    reset_display()
 
-def substract():
-    tmp_1 = display_number_value.get()
-    tmp_2 = (calculation_number.get())
-    tmp_3 = eval(tmp_1 + tmp_2)
- #   print(tmp_3)
-    calculation_number.set(tmp_3)
-    print(calculation_number.get())
-    #print(new_number)
-    reset_display()  
- 
-def multiply():
-    tmp_1 = display_number_value.get()
-    tmp_2 = ("*" + calculation_number.get())
-    tmp_3 = eval(tmp_1 + tmp_2)
- #   print(tmp_3)
-    calculation_number.set(tmp_3)
-    print(calculation_number.get())
-    #print(new_number)
-    reset_display()    
-  
+
 def equal():
-   # tmp_1 = display_number_value.get()
- #   tmp_2 = calculation_number.get()
-   # tmp_3 = eval(tmp_1 + tmp_2)
- #   print(tmp_3)
- #   calculation_number.set(tmp_3)
- #   print(calculation_number.get())
-    #print(new_number)
- #   reset_display()      
-    tmp = calculation_number.get()
-    print(tmp)
+    tmp_1 = display_number_value.get()
+    tmp = eval(tmp_1)
+#    print(tmp)
     display_number_value.set(tmp)
-  #  calculation_number.set("0")
 
 #  Button widgets
 
@@ -97,9 +54,8 @@ button_delete.grid(row=0,column=1)
 button_MEM2 = ttk.Button(frame,text="MEM2")
 button_MEM2.grid(row=0,column=2)
 
-button_divide = ttk.Button(frame,text="/")
+button_divide = ttk.Button(frame,text="/",command=lambda: number_to_display('/'))
 button_divide.grid(row=0,column=3)
-
 
 button_7 = ttk.Button(frame,text="7",command=lambda: number_to_display('7'))
 button_7.grid(row=1,column=0)
@@ -110,9 +66,8 @@ button_8.grid(row=1,column=1)
 button_9 = ttk.Button(frame,text="9",command=lambda: number_to_display('9'))
 button_9.grid(row=1,column=2)
 
-button_multiply = ttk.Button(frame,text="*",command=multiply)
+button_multiply = ttk.Button(frame,text="*",command=lambda: number_to_display('*'))
 button_multiply.grid(row=1,column=3)
-
 
 button_4 = ttk.Button(frame,text="4",command=lambda: number_to_display('4'))
 button_4.grid(row=2,column=0)
@@ -123,9 +78,8 @@ button_5.grid(row=2,column=1)
 button_6 = ttk.Button(frame,text="6",command=lambda: number_to_display('6'))
 button_6.grid(row=2,column=2)
 
-button_substract = ttk.Button(frame,text="-",command=substract)
+button_substract = ttk.Button(frame,text="-",command=lambda: number_to_display('-'))
 button_substract.grid(row=2,column=3)
-
 
 button_1 = ttk.Button(frame,text="1",command=lambda: number_to_display('1'))
 button_1.grid(row=3,column=0)
@@ -136,7 +90,7 @@ button_2.grid(row=3,column=1)
 button_3 = ttk.Button(frame,text="3",command=lambda: number_to_display('3'))
 button_3.grid(row=3,column=2)
 
-button_add = ttk.Button(frame,text="+",command=add)
+button_add = ttk.Button(frame,text="+",command=lambda: number_to_display('+'))
 button_add.grid(row=3,column=3)
 
 button_0 = ttk.Button(frame,text="0",command=lambda: number_to_display('0'))
