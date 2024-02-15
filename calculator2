@@ -1,5 +1,7 @@
+from ctypes.wintypes import DOUBLE
 from tkinter import *
 from tkinter import ttk
+from tokenize import Double
 
 window = Tk()
 window.geometry('400x400')
@@ -12,31 +14,85 @@ frame = ttk.Frame(window)
 frame.grid(row=1)
 
 
-
+#Variable to show numbers on display
 display_number_value = StringVar(window)
 
+#Variable to store value
+calculation_number = StringVar(window,value="0")
+
+
+#Display
 display = Entry(frame_display,font=("arial",16,"bold"),text=display_number_value,justify='right')
 display.grid(sticky=NSEW)
 
 
-
-
+#Skow numbers on display
 def number_to_display(number):
     tmp = display_number_value.get()
-    display_number = str(tmp + number)
-    display_number_value.set(display_number)
+    new_display_number = str(tmp + number)
+    display_number_value.set(new_display_number)
    
+#Clean up display
 def reset_display():
     display_number_value.set("")
   
+#Removes last character from display
+def remove_last_character():
+    old = display_number_value.get()
+    new = old[: -1]
+    display_number_value.set(new)
+  
+def add():
+    tmp_1 = display_number_value.get()
+    tmp_2 = ("+" + calculation_number.get())
+    tmp_3 = eval(tmp_1 + tmp_2)
+#    print(tmp_3)
+    calculation_number.set(tmp_3)
+    print(calculation_number.get())
+    #print(new_number)
+    reset_display()
 
-# Button widgets
+def substract():
+    tmp_1 = display_number_value.get()
+    tmp_2 = (calculation_number.get())
+    tmp_3 = eval(tmp_1 + tmp_2)
+ #   print(tmp_3)
+    calculation_number.set(tmp_3)
+    print(calculation_number.get())
+    #print(new_number)
+    reset_display()  
+ 
+def multiply():
+    tmp_1 = display_number_value.get()
+    tmp_2 = ("*" + calculation_number.get())
+    tmp_3 = eval(tmp_1 + tmp_2)
+ #   print(tmp_3)
+    calculation_number.set(tmp_3)
+    print(calculation_number.get())
+    #print(new_number)
+    reset_display()    
+  
+def equal():
+   # tmp_1 = display_number_value.get()
+ #   tmp_2 = calculation_number.get()
+   # tmp_3 = eval(tmp_1 + tmp_2)
+ #   print(tmp_3)
+ #   calculation_number.set(tmp_3)
+ #   print(calculation_number.get())
+    #print(new_number)
+ #   reset_display()      
+    tmp = calculation_number.get()
+    print(tmp)
+    display_number_value.set(tmp)
+  #  calculation_number.set("0")
+
+#  Button widgets
 
 button_clear = ttk.Button(frame,text="Clear",command=reset_display)
 button_clear.grid(row=0,column=0)
 
-button_MEM1 = ttk.Button(frame,text="MEM1")
-button_MEM1.grid(row=0,column=1)
+button_delete = ttk.Button(frame,text="DEL",command=remove_last_character)
+button_delete.grid(row=0,column=1)
 
 button_MEM2 = ttk.Button(frame,text="MEM2")
 button_MEM2.grid(row=0,column=2)
@@ -54,7 +110,7 @@ button_8.grid(row=1,column=1)
 button_9 = ttk.Button(frame,text="9",command=lambda: number_to_display('9'))
 button_9.grid(row=1,column=2)
 
-button_multiply = ttk.Button(frame,text="*")
+button_multiply = ttk.Button(frame,text="*",command=multiply)
 button_multiply.grid(row=1,column=3)
 
 
@@ -67,7 +123,7 @@ button_5.grid(row=2,column=1)
 button_6 = ttk.Button(frame,text="6",command=lambda: number_to_display('6'))
 button_6.grid(row=2,column=2)
 
-button_substract = ttk.Button(frame,text="-")
+button_substract = ttk.Button(frame,text="-",command=substract)
 button_substract.grid(row=2,column=3)
 
 
@@ -80,15 +136,17 @@ button_2.grid(row=3,column=1)
 button_3 = ttk.Button(frame,text="3",command=lambda: number_to_display('3'))
 button_3.grid(row=3,column=2)
 
-button_add = ttk.Button(frame,text="+")
+button_add = ttk.Button(frame,text="+",command=add)
 button_add.grid(row=3,column=3)
 
-
 button_0 = ttk.Button(frame,text="0",command=lambda: number_to_display('0'))
-button_0.grid(row=4,column=0,columnspan=2)
+button_0.grid(row=4,column=0)
 
-button_komma = ttk.Button(frame,text=".")
-button_komma.grid(row=4,column=2)
+button_komma = ttk.Button(frame,text=".",command=lambda: number_to_display('.'))
+button_komma.grid(row=4,column=1)
+
+button_equal = ttk.Button(frame,text="=",command=equal)
+button_equal.grid(row=4,column=2)
 
 window.mainloop()
 
